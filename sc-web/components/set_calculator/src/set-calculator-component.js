@@ -25,6 +25,7 @@ var setCalculatorViewerWindow = function(sandbox) {
     var buttonAPower =  '#set-calculator-tools-' + sandbox.container + " #button-a-power";
     var buttonBPower =  '#set-calculator-tools-' + sandbox.container + " #button-b-power";
     var buttonDesMult =  '#set-calculator-tools-' + sandbox.container + " #button-descartes-multiplication";
+    var error = '#set-identity-tools-' + sandbox.container + " #input-error";
 
     var keynodes = ['ui_set_calculator_load_in_memory'];
 
@@ -51,7 +52,7 @@ var setCalculatorViewerWindow = function(sandbox) {
                     if (isValidUserString(AString) && isValidUserString(BString)) {
                         callCalculator(AString,BString,'∩');
                     }else{
-                        console.log("Wrong input");
+                        $(error).text("Wrong input!");
                     }
                 });
 
@@ -61,7 +62,7 @@ var setCalculatorViewerWindow = function(sandbox) {
                     if (isValidUserString(AString) && isValidUserString(BString)) {
                         callCalculator(AString,BString,'∪');
                     }else{
-                        console.log("Wrong input");
+                        $(error).text("Wrong input!");
                     }
                 });
 
@@ -71,7 +72,7 @@ var setCalculatorViewerWindow = function(sandbox) {
                     if (isValidUserString(AString) && isValidUserString(BString)) {
                         callCalculator(AString,BString,'A\\B');
                     }else{
-                        console.log("Wrong input");
+                        $(error).text("Wrong input!");
                     }
                 });
 
@@ -81,7 +82,7 @@ var setCalculatorViewerWindow = function(sandbox) {
                     if (isValidUserString(AString) && isValidUserString(BString)) {
                         callCalculator(AString,BString,'B\\A');
                     }else{
-                        console.log("Wrong input");
+                        $(error).text("Wrong input!");
                     }
                 });
 
@@ -91,7 +92,7 @@ var setCalculatorViewerWindow = function(sandbox) {
                     if (isValidUserString(AString) && isValidUserString(BString)) {
                         callCalculator(AString,BString,'Δ');
                     }else{
-                        console.log("Wrong input");
+                        $(error).text("Wrong input!");
                     }
                 });
 
@@ -101,7 +102,7 @@ var setCalculatorViewerWindow = function(sandbox) {
                     if (isValidUserString(AString)) {
                         callCalculator(AString,BString,'|A|');
                     }else{
-                        console.log("Wrong input");
+                        $(error).text("Wrong input!");
                     }
                 });
 
@@ -111,7 +112,7 @@ var setCalculatorViewerWindow = function(sandbox) {
                     if (isValidUserString(BString)) {
                         callCalculator(AString,BString,'|B|');
                     }else{
-                        console.log("Wrong input");
+                        $(error).text("Wrong input!");
                     }
                 });
 
@@ -121,7 +122,7 @@ var setCalculatorViewerWindow = function(sandbox) {
                     if (isValidUserString(AString) && isValidUserString(BString)) {
                         callCalculator(AString,BString,'✕');
                     }else{
-                        console.log("Wrong input");
+                        $(error).text("Wrong input!");
                     }
                 });
             });
@@ -144,7 +145,7 @@ var setCalculatorViewerWindow = function(sandbox) {
 SCWeb.core.ComponentManager.appendComponentInitialize(SetCalculatorComponent);
 
 function isValidUserString(userString){
-    var re = /^\w[a-z0-9,]+\w$/;
+    var re = /(^$)|(^([a-z0-9])(,\s*[a-z0-9])*$)/;
     if (re.test(userString) ) {
         return true;
     }else{
